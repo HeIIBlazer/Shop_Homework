@@ -4,46 +4,107 @@ package shop_homework;
 import Classes.Client;
 import Classes.Product;
 import Classes.Purchased;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 
 public class Shop {
+private Scanner scanner = new Scanner(System.in);
+private Client[] buyer = new Client[10];
+private Product[] product= new Product[10];
+private Purchased[] purchased= new Purchased[10];
     public void run(){
-    Client client1 = new Client();
-    client1.setFirstName("Dan");
-    client1.setSecondName("Vassiljev");
-    client1.setPhone("54565758");
-    
-    Product product1=new Product();
-    product1.setProductType("Moloko");
-    product1.setProductCreator("Tere");
-    product1.setPrice((float) 2.99);
-    
-    Purchased purchased1 = new Purchased();
-    purchased1.setClient(client1);
-    purchased1.setProduct(product1);
-    Calendar c= new GregorianCalendar();
-    purchased1.setPurchasedDate(c.getTime());
-    System.out.println("Purchased1: " +purchased1.toString());
-    
-        System.out.println("--------------------------------------------------------------------------------------");
-    Client client2 = new Client();
-    client2.setFirstName("Di");
-    client2.setSecondName("Alosh");
-    client2.setPhone("56445758");
-    
-    Product product2=new Product();
-    product2.setProductType("Jabloki");
-    product2.setProductCreator("EEstiFArm");
-    product2.setPrice((float) 5.78);
-    
-    Purchased purchased2 = new Purchased();
-    purchased2.setClient(client2);
-    purchased2.setProduct(product2);
-    c= new GregorianCalendar();
-    purchased2.setPurchasedDate(c.getTime());
-    System.out.println("Purchased2: " +purchased2.toString());
-    
+    String repeat ="r";
+        do{
+            System.out.println("0: Выход из программы");
+            System.out.println("1: Ввод Информация покупателе");
+            System.out.println("2: Информация о покупателях");
+            System.out.println("3: Ввод информации о продукте");
+            System.out.println("4: Информация о продуктах");
+            //System.out.println("5: Информация о купленных продуктах");
+            System.out.print("Выберети номер задачи: ");
+            int task = scanner.nextInt(); scanner.nextLine();
+            
+            switch(task){
+
+                case 0:
+                    repeat="q";
+                    System.out.println("ДАВАЙ ДО ЗАВТРА!!!!!!");
+                    break;
+                case 1:
+                    System.out.println("--------Добавляем книгу----------");
+                    for (int i = 0; i < buyer.length; i++) {
+                        if(buyer[i]==null){
+                        buyer[i]= addBuyer();
+                        break;
+                        }
+                    }
+                    break;
+                    
+                case 2:
+                    System.out.println("-------------Список книг-------------");
+                    for (int i = 0; i < buyer.length; i++) {
+                        if(buyer[i]!=null){
+                            System.out.println(buyer[i].toString());
+                                
+                            }
+                        
+                    }
+                break;
+                case 3:
+                    System.out.println("-------------Добавить читателя----------------");
+                    for (int i = 0; i < product.length; i++) {
+                        if(product[i]==null){
+                        product[i]=addProduct();
+                        break;
+                                    }
+                    }
+                break;
+                case 4:
+                    System.out.println("-------------Cписок читателей-------------");
+                    for (int i = 0; i < product.length; i++) {
+                        if(product[i]!=null){
+                            System.out.println(product[i].toString());
+                                
+                            }
+                        
+                    }
+               
+                break;
+                default:
+                    System.out.println("Введи номер из списка!!!");
+            }
+     }while("r".equals(repeat));   
     }
-}
+        
+    private Client addBuyer(){
+    Client buyer1 = new Client();
+    System.out.print("Введите имя покупателя: ");
+    buyer1.setFirstName(scanner.nextLine());
+    System.out.print("Введите фамилию покупателя: ");
+    buyer1.setSecondName(scanner.nextLine());
+    System.out.print("Введите Номер телефона покупателя: ");
+    buyer1.setPhone(scanner.nextLine()); 
+    return buyer1;
+    }
+    
+    
+    
+    private Product addProduct(){
+    Product product1 = new Product();
+    System.out.print("Введите вид продукта: ");
+    product1.setProductType(scanner.nextLine());
+    System.out.print("Введите название Компании: ");
+    product1.setProductCreator(scanner.nextLine());
+    System.out.print("Введите цену продукта: ");
+    product1.setPrice(scanner.nextFloat());
+    
+    return product1;
+    }
+    
+            }
+                
+            
+    
+        
+
+
