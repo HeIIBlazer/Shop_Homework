@@ -5,6 +5,7 @@ package Classes;
     private String FirstName;
     private String SecondName;
     private String Phone;
+    private float Money;
 
     public String getFirstName() {
         return FirstName;
@@ -30,9 +31,20 @@ package Classes;
         this.Phone = Phone;
     }
 
+    public float getMoney() {
+        return Money;
+    }
+
+    public void setMoney(float Money) {
+        this.Money = Money;
+    }
+
     @Override
     public String toString() {
-        return "Client{" + "FirstName=" + FirstName + ", SecondName=" + SecondName + ", Phone=" + Phone + '}';
+        return "Client{" + "FirstName=" + FirstName + ", SecondName=" + SecondName + ", Phone=" + Phone + ", Money=" + Money + '}';
+    }
+
+    
     }
     
-}
+
